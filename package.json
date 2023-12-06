@@ -1,0 +1,22 @@
+{
+  "name": "okx-api-murki",
+  "version": "1.2.7",
+  "description": "okx integration",
+  "main": "index.js",
+  "type": "commonjs",
+  "types": "./index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --poll index.ts",
+    "build": "ts-node --esm",
+    "build-ex": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.2"
+  }
+}
