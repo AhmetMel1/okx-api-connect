@@ -1,6 +1,11 @@
 import { OKXHeaders } from "./okxHeader";
 import { QueryParamBuilder } from "./queryParams";
-import { ApiConfiguration, customResponse, methodTypes, okxResponse } from "./types";
+import {
+  ApiConfiguration,
+  customResponse,
+  methodTypes,
+  okxResponse,
+} from "./types";
 
 export class APICall<T, K> {
   method: methodTypes;
@@ -24,12 +29,21 @@ export class APICall<T, K> {
   }
 
   async apiCall(): Promise<customResponse<T>> {
-    const params: string = this.query ? new QueryParamBuilder(this.query).build() : "";
-    const body: string | undefined = this.requestBody ? JSON.stringify(this.requestBody) : "";
+    const params: string = this.query
+      ? new QueryParamBuilder(this.query).build()
+      : "";
+    const body: string | undefined = this.requestBody
+      ? JSON.stringify(this.requestBody)
+      : "";
 
     const basePath = `/api/v5${this.url}${params}`;
 
-    const headers = new OKXHeaders(this.apiConfiguration, this.method, basePath, body).generateHeaders();
+    const headers = new OKXHeaders(
+      this.apiConfiguration,
+      this.method,
+      basePath,
+      body
+    ).generateHeaders();
 
     const fetchConfig: RequestInit = {
       headers: headers,
@@ -41,10 +55,6 @@ export class APICall<T, K> {
 
     try {
       const response = await fetch(okxBasePath, fetchConfig);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
 
       const { status } = response;
       const result: okxResponse<T> = await response.json();
