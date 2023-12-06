@@ -27,9 +27,9 @@ export class APICall<T, K> {
     const params: string = this.query ? new QueryParamBuilder(this.query).build() : "";
     const body: string | undefined = this.requestBody ? JSON.stringify(this.requestBody) : "";
 
-    const basePathURL = `/api/v5${this.url}${params}`;
+    const basePath = `/api/v5${this.url}${params}`;
 
-    const headers = new OKXHeaders(this.apiConfiguration, this.method, basePathURL, body).generateHeaders();
+    const headers = new OKXHeaders(this.apiConfiguration, this.method, basePath, body).generateHeaders();
 
     const fetchConfig: RequestInit = {
       headers: headers,
@@ -37,10 +37,10 @@ export class APICall<T, K> {
       body: this.method !== "GET" ? body : undefined,
     };
 
-    const realBasePathURL = `https://okex.com${basePathURL}`;
+    const okxBasePath = `https://okex.com${basePath}`;
 
     try {
-      const response = await fetch(realBasePathURL, fetchConfig);
+      const response = await fetch(okxBasePath, fetchConfig);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
