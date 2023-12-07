@@ -1,15 +1,15 @@
-import { methodTypes } from "./types";
+import { MethodTypes } from "../types/types";
 import { createHmac } from "crypto";
 
 export class SignatureGenerator {
   timestamp: string;
-  method: methodTypes;
+  method: MethodTypes;
   secretKey: string;
   path: string;
   body: string;
   constructor(
     timestamp: string,
-    method: methodTypes,
+    method: MethodTypes,
     secretKey: string,
     path: string,
     body: string
@@ -25,7 +25,7 @@ export class SignatureGenerator {
     const hmac = createHmac("sha256", this.secretKey);
     hmac.update(this.timestamp);
     hmac.update(this.method);
-    
+
     if (this.path) {
       hmac.update(this.path);
     }

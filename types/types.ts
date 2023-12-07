@@ -4,14 +4,14 @@ export interface ApiConfiguration {
   passphrase: string;
 }
 
-export interface okxResponse<T> {
+export interface OkxResponse<T> {
   status?: number;
   code: string;
   msg: string;
   data: T | undefined;
 }
 
-export interface customResponse<T> {
+export interface CustomResponse<T> {
   timestamp: number;
   status?: number;
   code: string;
@@ -19,5 +19,4 @@ export interface customResponse<T> {
   data: T | undefined;
 }
 
-export type methodTypes = "GET" | "POST";
-
+export type MethodTypes = "GET" | "POST";

@@ -1,6 +1,6 @@
 {
-  "name": "okx-api-murki",
-  "version": "1.2.7",
+  "name": "okx-api-connect",
+  "version": "1.0.0",
   "description": "okx integration",
   "main": "index.js",
   "type": "commonjs",

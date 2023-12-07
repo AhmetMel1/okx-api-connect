@@ -2,23 +2,23 @@ import { OKXHeaders } from "./okxHeader";
 import { QueryParamBuilder } from "./queryParams";
 import {
   ApiConfiguration,
-  customResponse,
-  methodTypes,
-  okxResponse,
-} from "./types";
+  CustomResponse,
+  MethodTypes,
+  OkxResponse,
+} from "../types/types";
 
 export class APICall<T, K> {
-  method: methodTypes;
+  method: MethodTypes;
   url: string;
   apiConfiguration: ApiConfiguration;
-  query?: T;
+  query?: K;
   requestBody?: K;
 
   constructor(
-    method: methodTypes,
+    method: MethodTypes,
     url: string,
     apiConfiguration: ApiConfiguration,
-    query?: T,
+    query?: K,
     requestBody?: K
   ) {
     this.method = method;
@@ -28,7 +28,7 @@ export class APICall<T, K> {
     this.requestBody = requestBody;
   }
 
-  async apiCall(): Promise<customResponse<T>> {
+  async apiCall(): Promise<CustomResponse<T>> {
     const params: string = this.query
       ? new QueryParamBuilder(this.query).build()
       : "";
@@ -57,10 +57,14 @@ export class APICall<T, K> {
       const response = await fetch(okxBasePath, fetchConfig);
 
       const { status } = response;
-      const result: okxResponse<T> = await response.json();
+      const result: OkxResponse<T> = await response.json();
       const timestamp = new Date().getTime();
 
-      const res: customResponse<T> = {
+      if (!response.ok) {
+        result.code = "200-" + result.code;
+      }
+
+      const res: CustomResponse<T> = {
         timestamp: timestamp,
         status: status,
         code: result.code,

@@ -1,15 +1,15 @@
 import { SignatureGenerator } from "./generateSignature";
-import { ApiConfiguration, methodTypes } from "./types";
+import { ApiConfiguration, MethodTypes } from "../types/types";
 
 export class OKXHeaders {
   apiConfiguration: ApiConfiguration;
-  method: methodTypes;
+  method: MethodTypes;
   path: string;
   body: string;
 
   constructor(
     apiConfiguration: ApiConfiguration,
-    method: methodTypes,
+    method: MethodTypes,
     path: string,
     body: string
   ) {
