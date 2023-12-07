@@ -109,6 +109,8 @@ export interface GetWithdrawalHistoryResponse {
   state: string;
   ts: string;
   wdId: string;
+  feeCCy: string;
+  nonTradableAsset: string;
 }
 
 export interface GetOrderHistoryArchiveResponse {
@@ -425,6 +427,7 @@ export interface GetAlgoOrderDetailsResponse {
   tpOrdPx: string;
   slTriggerPx: string;
   slTriggerPxType: string;
+  slOrdPx: string;
   triggerPx: string;
   triggerPxType: TriggerPriceType;
   ordPx: string;

@@ -67,13 +67,13 @@ export enum AlgoOrderType {
 }
 
 export enum AlgoOrderState {
-  STARTING = "starting",
-  RUNNING = "running",
-  STOPPING = "stopping",
-  NO_CLOSE_POSITION = "no_close_position",
-  EFFECTIVE = "effective",
-  CANCELED = "canceled",
-  ORDER_FAILED = "order_failed",
+  starting = "starting",
+  running = "running",
+  stopping = "stopping",
+  no_close_position = "no_close_position",
+  effective = "effective",
+  canceled = "canceled",
+  order_failed = "order_failed",
 }
 
 export enum QuickMarginType {
