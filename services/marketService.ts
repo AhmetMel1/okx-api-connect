@@ -1,30 +1,30 @@
 import { APICall } from "../utils/apiCall";
 import { ApiConfiguration, CustomResponse } from "../types/types";
 import {
-  GetDepositAddressResponse,
-  GetDepositHistoryResponse,
-} from "../types/responses";
-import {
-  GetDepositAddressRequest,
-  GetDepositHistoryRequest,
+  GetMarketTickerRequest,
+  GetMarketTickersRequest,
 } from "../types/request";
+import {
+  GetMarketTickerResponse,
+  GetMarketTickersResponse,
+} from "../types/responses";
 
-export class OkxDepositService {
+export class OkxMarketService {
   apiConfiguration: ApiConfiguration;
 
   constructor(apiConfiguration: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getDepositAddress = async (args: GetDepositAddressRequest) => {
-    return new APICall<GetDepositAddressResponse[], GetDepositAddressRequest>(
+  getMarketTicker = async (args: GetMarketTickerRequest) => {
+    return new APICall<GetMarketTickerResponse[], GetMarketTickerRequest>(
       "GET",
-      "/asset/deposit-address",
+      "/market/ticker",
       this.apiConfiguration,
       args
     )
       .apiCall()
-      .then(async (response: CustomResponse<GetDepositAddressResponse[]>) => {
+      .then(async (response: CustomResponse<GetMarketTickerResponse[]>) => {
         return {
           status: response.status,
           code: response.code,
@@ -34,15 +34,15 @@ export class OkxDepositService {
       });
   };
 
-  getDepositHistory = async (args?: GetDepositHistoryRequest) => {
-    return new APICall<GetDepositHistoryResponse[], GetDepositHistoryRequest>(
+  getMarketTickers = async (args: GetMarketTickersRequest) => {
+    return new APICall<GetMarketTickersResponse[], GetMarketTickersRequest>(
       "GET",
-      "/asset/deposit-history",
+      "/market/tickers",
       this.apiConfiguration,
       args
     )
       .apiCall()
-      .then((response: CustomResponse<GetDepositHistoryResponse[]>) => {
+      .then(async (response: CustomResponse<GetMarketTickersResponse[]>) => {
         return {
           status: response.status,
           code: response.code,

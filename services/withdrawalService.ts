@@ -16,13 +16,13 @@ export class OkxWithdrawalService {
     this.apiConfiguration = apiConfiguration;
   }
 
-  postWithdrawal = async (requestBody: PostWithdrawalRequest) => {
+  postWithdrawal = async (args: PostWithdrawalRequest) => {
     return new APICall<PostWithdrawalResponse[], PostWithdrawalRequest>(
       "POST",
       "/asset/withdrawal",
       this.apiConfiguration,
       undefined,
-      requestBody
+      args
     )
       .apiCall()
       .then(async (response: CustomResponse<PostWithdrawalResponse[]>) => {
@@ -35,11 +35,11 @@ export class OkxWithdrawalService {
       });
   };
 
-  getWithdrawalHistory = async (query?: GetWithdrawalHistoryRequest) => {
+  getWithdrawalHistory = async (args?: GetWithdrawalHistoryRequest) => {
     return new APICall<
       GetWithdrawalHistoryResponse[],
       GetWithdrawalHistoryRequest
-    >("GET", "/asset/withdrawal-history", this.apiConfiguration, query)
+    >("GET", "/asset/withdrawal-history", this.apiConfiguration, args)
       .apiCall()
       .then(
         async (response: CustomResponse<GetWithdrawalHistoryResponse[]>) => {

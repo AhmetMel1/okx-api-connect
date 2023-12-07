@@ -20,12 +20,12 @@ export class OkxConvertService {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getConvertHistory = async (query?: GetConvertHistoryRequest) => {
+  getConvertHistory = async (args?: GetConvertHistoryRequest) => {
     return new APICall<GetConvertHistoryResponse[], GetConvertHistoryRequest>(
       "GET",
       "/asset/convert/history",
       this.apiConfiguration,
-      query
+      args
     )
       .apiCall()
       .then(async (response: CustomResponse<GetConvertHistoryResponse[]>) => {
@@ -40,12 +40,12 @@ export class OkxConvertService {
 
   getConvertCurrencyPair = async (
     apiConfiguration: ApiConfiguration,
-    query: GetConvertCurrencyPairRequest
+    args: GetConvertCurrencyPairRequest
   ) => {
     return new APICall<
       GetConvertCurrencyPairResponse[],
       GetConvertCurrencyPairRequest
-    >("GET", "/asset/convert/currency-pair", apiConfiguration, query)
+    >("GET", "/asset/convert/currency-pair", apiConfiguration, args)
       .apiCall()
       .then(
         async (response: CustomResponse<GetConvertCurrencyPairResponse[]>) => {
@@ -59,7 +59,7 @@ export class OkxConvertService {
       );
   };
 
-  postConvertEstimateQuote = async (requestBody: PostEstimateQuoteRequest) => {
+  postConvertEstimateQuote = async (args: PostEstimateQuoteRequest) => {
     return new APICall<
       PostConvertEstimateQuoteResponse[],
       PostEstimateQuoteRequest
@@ -68,7 +68,7 @@ export class OkxConvertService {
       "/asset/convert/estimate-quote",
       this.apiConfiguration,
       undefined,
-      requestBody
+      args
     )
       .apiCall()
       .then(
@@ -85,13 +85,13 @@ export class OkxConvertService {
       );
   };
 
-  postConvertTrade = async (requestBody: PostConvertTradeRequest) => {
+  postConvertTrade = async (args: PostConvertTradeRequest) => {
     return new APICall<PostConvertTradeResponse[], PostConvertTradeRequest>(
       "POST",
       "/asset/convert/trade",
       this.apiConfiguration,
       undefined,
-      requestBody
+      args
     )
       .apiCall()
       .then(async (response: CustomResponse<PostConvertTradeResponse[]>) => {

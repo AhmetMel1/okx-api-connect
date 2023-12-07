@@ -1,11 +1,17 @@
 import {
+  AlgoOrderState,
+  AlgoOrderType,
   InstrumentType,
-  OrderMode,
+  TradeMode,
   OrderSide,
   OrderType,
   TriggerPriceType,
   WithdrawalDestinationType,
   WithdrawalState,
+  QuickMarginType,
+  PositionSide,
+  SubAccountPerm,
+  AccountType,
 } from "./enums";
 
 export interface GetConvertHistoryRequest {
@@ -73,6 +79,12 @@ export interface GetOrderHistoryArchiveRequest {
   limit?: string;
 }
 
+export interface GetOrderDetailsRequest {
+  instId: string;
+  ordId?: string;
+  clOrdId?: string;
+}
+
 export interface GetPendingOrdersRequest {
   instType?: InstrumentType;
   uly?: string;
@@ -87,7 +99,7 @@ export interface GetPendingOrdersRequest {
 
 export interface PostPlaceOrderRequest {
   instId: string;
-  tdMode: OrderMode;
+  tdMode: TradeMode;
   ccy?: string;
   clOrdId?: string;
   tag?: string;
@@ -106,6 +118,12 @@ export interface PostPlaceOrderRequest {
   tpTriggerPxType?: TriggerPriceType;
   slTriggerPxType?: TriggerPriceType;
   quickMgnType?: string;
+}
+
+export interface PostCancelOrderRequest {
+  instId: string;
+  ordId?: string;
+  clOrdId?: string;
 }
 
 export interface GetCurrenciesRequest {
@@ -144,4 +162,128 @@ export interface GetWithdrawalHistoryRequest {
   after?: string;
   before?: string;
   limit?: string;
+}
+
+export interface GetAlgoOrderHistoryRequest {
+  ordType: AlgoOrderType;
+  state?: AlgoOrderState;
+  algoId?: string;
+  instId?: string;
+  after?: string;
+  before?: string;
+  limit?: string;
+}
+
+export interface GetAlgoOrderDetailsRequest {
+  algoId?: string;
+  algoClOrdId?: string;
+}
+
+export interface GetPendingAlgoOrdersRequest {
+  instType?: InstrumentType;
+  ordType: AlgoOrderType;
+  algoId?: string;
+  algoClOrdId?: string;
+  instId?: string;
+  after?: string;
+  before?: string;
+  limit?: string;
+}
+
+export interface PostPlaceAlgoOrderRequest {
+  instId: string;
+  tdMode: TradeMode;
+  ccy?: string;
+  side: OrderSide;
+  posSide?: PositionSide;
+  ordType: AlgoOrderType;
+  sz?: string;
+  tag?: string;
+  reduceOnly?: boolean;
+  tgtCcy?: string;
+  algoClOrdId?: string;
+  closeFraction?: string;
+  quickMgnType?: QuickMarginType;
+  tpTriggerPxType?: TriggerPriceType;
+  tpTriggerPx?: string;
+  tpOrdPx?: string;
+  slTriggerPxType?: TriggerPriceType;
+  slTriggerPx?: string;
+  slOrdPx?: string;
+  triggerPxType?: TriggerPriceType;
+  triggerPx: string;
+  orderPx: string;
+  pxVar?: string;
+  pxSpread?: string;
+  szLimit?: string;
+  pxLimit?: string;
+  timeInterval?: string;
+}
+
+export interface PostCancelAlgoOrderRequest {
+  algoId: string;
+  instId: string;
+}
+
+export interface CreateSubAccountRequest {
+  subAcct: string;
+  label?: string;
+  clientIP?: string;
+}
+
+export interface DeleteSubAccountRequest {
+  subAcct: string;
+}
+
+export interface GetSubAccountInfoRequest {
+  subAcct: string;
+  label?: string;
+  uid?: string;
+  limit?: string;
+}
+
+export interface CreateApiKeyRequest {
+  subAcct: string;
+  label: string;
+  passphrase: string;
+  ip?: string;
+  perm?: SubAccountPerm;
+}
+
+export interface ResetSubAccountApiKeyRequest {
+  subAcct: string;
+  apiKey: string;
+  label?: string;
+  perm?: SubAccountPerm;
+  ip?: string;
+}
+
+export interface GetTradingAccountBalanceRequest {
+  ccy?: string;
+}
+
+export interface GetMainAccountBalanceRequest {
+  ccy?: string;
+}
+
+export interface FundsTransferRequest {
+  ccy: string;
+  amt: string;
+  subAcct?: string;
+  from: AccountType;
+  to: AccountType;
+  type?: string;
+  loanTrans?: string;
+  clientId?: string;
+  omitPosRisk?: string;
+}
+
+export interface GetMarketTickerRequest {
+  instId: string;
+}
+
+export interface GetMarketTickersRequest {
+  instType: InstrumentType;
+  uly?: string;
+  instFamily?: string;
 }

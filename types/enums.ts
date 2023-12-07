@@ -18,7 +18,7 @@ export enum OrderType {
   op_fok = "op_fok",
 }
 
-export enum OrderMode {
+export enum TradeMode {
   cross = "cross",
   isolated = "isolated",
   cash = "cash",
@@ -55,4 +55,45 @@ export enum WithdrawalState {
   manual_review_d = "8",
   manual_review_e = "9",
   manual_review_f = "12",
+}
+
+export enum AlgoOrderType {
+  conditional = "conditional",
+  oco = "oco",
+  trigger = "trigger",
+  move_order_stop = "move_order_stop",
+  iceberg = "iceberg",
+  twap = "twap",
+}
+
+export enum AlgoOrderState {
+  STARTING = "starting",
+  RUNNING = "running",
+  STOPPING = "stopping",
+  NO_CLOSE_POSITION = "no_close_position",
+  EFFECTIVE = "effective",
+  CANCELED = "canceled",
+  ORDER_FAILED = "order_failed",
+}
+
+export enum QuickMarginType {
+  manual = "manual",
+  auto_borrow = "auto_borrow",
+  auto_repay = "auto_repay",
+}
+
+export enum PositionSide {
+  long = "long",
+  short = "short",
+}
+
+export enum SubAccountPerm {
+  read_only = "read_only",
+  trade = "trade",
+  withdraw = "withdraw",
+}
+
+export enum AccountType {
+  Funding = "6",
+  Trading = "18",
 }

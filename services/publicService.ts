@@ -18,12 +18,12 @@ export class OkxPublicService {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getCurrencies = async (query?: GetCurrenciesRequest) => {
+  getCurrencies = async (args?: GetCurrenciesRequest) => {
     return new APICall<GetCurrenciesResponse[], GetCurrenciesRequest>(
       "GET",
       "/asset/currencies",
       this.apiConfiguration,
-      query
+      args
     )
       .apiCall()
       .then(async (response: CustomResponse<GetCurrenciesResponse[]>) => {
@@ -36,12 +36,12 @@ export class OkxPublicService {
       });
   };
 
-  getSystemStatus = async (query?: GetSystemStatusRequest) => {
+  getSystemStatus = async (args?: GetSystemStatusRequest) => {
     return new APICall<GetSystemStatusResponse[], GetSystemStatusRequest>(
       "GET",
       "/system/status",
       this.apiConfiguration,
-      query
+      args
     )
       .apiCall()
       .then(async (response: CustomResponse<GetSystemStatusResponse[]>) => {
@@ -54,12 +54,12 @@ export class OkxPublicService {
       });
   };
 
-  getInstruments = async (query: GetInstrumentRequest) => {
+  getInstruments = async (args: GetInstrumentRequest) => {
     return new APICall<GetInstrumentResponse[], GetInstrumentRequest>(
       "GET",
       "/public/instruments",
       this.apiConfiguration,
-      query
+      args
     )
       .apiCall()
       .then(async (response: CustomResponse<GetInstrumentResponse[]>) => {

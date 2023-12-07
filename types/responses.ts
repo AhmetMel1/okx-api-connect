@@ -1,3 +1,14 @@
+import {
+  AccountType,
+  AlgoOrderType,
+  InstrumentType,
+  OrderSide,
+  OrderType,
+  SubAccountPerm,
+  TradeMode,
+  TriggerPriceType,
+} from "./enums";
+
 export interface GetDepositHistoryResponse {
   actualDepBlkConfirm: string;
   amt: string;
@@ -151,6 +162,57 @@ export interface GetOrderHistoryArchiveResponse {
   cTime: string;
 }
 
+export interface GetOrderDetailsResponse {
+  instType: InstrumentType;
+  instId: string;
+  ccy: string;
+  ordId: string;
+  clOrdId: string;
+  tag: string;
+  px: string;
+  pxUsd: string;
+  pxVol: string;
+  pxType: string;
+  sz: string;
+  pnl: string;
+  ordType: OrderType;
+  side: OrderSide;
+  posSide: string;
+  tdMode: TradeMode;
+  accFillSz: string;
+  fillPx: string;
+  tradeId: string;
+  fillSz: string;
+  fillTime: string;
+  state: string;
+  avgPx: string;
+  lever: string;
+  attachAlgoClOrdId: string;
+  tpTriggerPx: string;
+  tpTriggerPxType: TriggerPriceType;
+  tpOrdPx: string;
+  slTriggerPx: string;
+  slTriggerPxType: TriggerPriceType;
+  slOrdPx: string;
+  attachAlgoOrds: string[];
+  stpId: string;
+  stpMode: string;
+  feeCcy: string;
+  fee: string;
+  rebateCcy: string;
+  rebate: string;
+  tgtCcy: string;
+  category: string;
+  reduceOnly: boolean;
+  cancelSource: string;
+  cancelSourceReason: string;
+  quickMgnType: string;
+  algoClOrdId: string;
+  algoId: string;
+  uTime: string;
+  cTime: string;
+}
+
 export interface GetPendingOrdersResponse {
   accFillSz: string;
   avgPx: string;
@@ -209,6 +271,13 @@ export interface PostPlaceOrderResponse {
   sMsg: string;
 }
 
+export interface PostCancelOrderResponse {
+  clOrdId: string;
+  ordId: string;
+  sCode: string;
+  sMsg: string;
+}
+
 export interface GetCurrenciesResponse {
   canDep: boolean;
   canInternal: boolean;
@@ -251,32 +320,334 @@ export interface GetSystemStatusResponse {
 }
 
 export interface GetInstrumentResponse {
-  instType: string;
-  instId: string;
-  instFamily: string;
-  uly: string;
-  category: string;
+  alias: string;
   baseCcy: string;
+  category: string;
+  ctMult: string;
+  ctType: string;
+  ctVal: string;
+  ctValCcy: string;
+  expTime: string;
+  instFamily: string;
+  instId: string;
+  instType: string;
+  lever: string;
+  listTime: string;
+  lotSz: string;
+  maxIcebergSz: string;
+  maxLmtAmt: string;
+  maxLmtSz: string;
+  maxMktAmt: string;
+  maxMktSz: string;
+  maxStopSz: string;
+  maxTriggerSz: string;
+  maxTwapSz: string;
+  minSz: string;
+  optType: string;
   quoteCcy: string;
   settleCcy: string;
-  ctVal: string;
-  ctMult: string;
-  ctValCcy: string;
-  optType: string;
-  stk: string;
-  listTime: string;
-  expTime: string;
-  lever: string;
-  tickSz: string;
-  lotSz: string;
-  minSz: string;
-  ctType: string;
-  alias: string;
   state: string;
-  maxLmtSz: string;
-  maxMktSz: string;
-  maxTwapSz: string;
-  maxIcebergSz: string;
-  maxTriggerSz: string;
-  maxStopSz: string;
+  stk: string;
+  tickSz: string;
+  uly: string;
+}
+
+export interface GetAlgoOrderHistoryResponse {
+  activePx: string;
+  actualPx: string;
+  actualSide: string;
+  actualSz: string;
+  algoClOrdId: string;
+  algoId: string;
+  attachAlgoOrds: string[];
+  cTime: string;
+  callbackRatio: string;
+  callbackSpread: string;
+  ccy: string;
+  clOrdId: string;
+  closeFraction: string;
+  failCode: string;
+  instId: string;
+  instType: string;
+  last: string;
+  lever: string;
+  moveTriggerPx: string;
+  ordId: string;
+  ordIdList: string[];
+  ordPx: string;
+  ordType: AlgoOrderType;
+  posSide: string;
+  pxLimit: string;
+  pxSpread: string;
+  pxVar: string;
+  quickMgnType: string;
+  reduceOnly: string;
+  side: string;
+  slOrdPx: string;
+  slTriggerPx: string;
+  slTriggerPxType: TriggerPriceType;
+  state: string;
+  sz: string;
+  szLimit: string;
+  tag: string;
+  tdMode: TradeMode;
+  tgtCcy: string;
+  timeInterval: string;
+  tpOrdPx: string;
+  tpTriggerPx: string;
+  tpTriggerPxType: TriggerPriceType;
+  triggerPx: string;
+  triggerPxType: string;
+  triggerTime: string;
+  amendPxOnTriggerType: string;
+}
+
+export interface GetAlgoOrderDetailsResponse {
+  instType: string;
+  instId: string;
+  ordId: string;
+  ordIdList: string[];
+  ccy: string;
+  clOrdId: string;
+  algoId: string;
+  attachAlgoOrds: string[];
+  sz: string;
+  closeFraction: string;
+  ordType: AlgoOrderType;
+  side: string;
+  posSide: string;
+  tdMode: TradeMode;
+  tgtCcy: string;
+  state: string;
+  lever: string;
+  tpTriggerPx: string;
+  tpTriggerPxType: string;
+  tpOrdPx: string;
+  slTriggerPx: string;
+  slTriggerPxType: string;
+  triggerPx: string;
+  triggerPxType: TriggerPriceType;
+  ordPx: string;
+  actualSz: string;
+  actualPx: string;
+  actualSide: string;
+  pxVar: string;
+  pxSpread: string;
+  pxLimit: string;
+  szLimit: string;
+  tag: string;
+  timeInterval: string;
+  callbackRatio: string;
+  callbackSpread: string;
+  activePx: string;
+  moveTriggerPx: string;
+  reduceOnly: string;
+  triggerTime: string;
+  last: string;
+  failCode: string;
+  algoClOrdId: string;
+  amendPxOnTriggerType: string;
+  cTime: string;
+}
+
+export interface GetPendingAlgoOrdersResponse {
+  instType: InstrumentType;
+  ordType: AlgoOrderType;
+  algoId: string;
+  instId: string;
+  after: string;
+  before: string;
+  limit: string;
+  activePx: string;
+  actualPx: string;
+  actualSide: string;
+  actualSz: string;
+  attachAlgoOrds: string[];
+  cTime: string;
+  callbackRatio: string;
+  callbackSpread: string;
+  ccy: string;
+  clOrdId: string;
+  lever: string;
+  moveTriggerPx: string;
+  ordId: string;
+  ordIdList: string[];
+  ordPx: string;
+  posSide: string;
+  pxLimit: string;
+  pxSpread: string;
+  pxVar: string;
+  side: string;
+  slOrdPx: string;
+  slTriggerPx: string;
+  slTriggerPxType: TriggerPriceType;
+  state: string;
+  sz: string;
+  closeFraction: string;
+  szLimit: string;
+  tag: string;
+  tdMode: TradeMode;
+  tgtCcy: string;
+  timeInterval: string;
+  tpOrdPx: string;
+  tpTriggerPx: string;
+  tpTriggerPxType: TriggerPriceType;
+  triggerPx: string;
+  reduceOnly: string;
+  triggerPxType: string;
+  quickMgnType: string;
+  last: string;
+  failCode: string;
+  algoClOrdId: string;
+  triggerTime: string;
+  amendPxOnTriggerType: string;
+}
+
+export interface PostPlaceAlgoOrderResponse {
+  algoId: string;
+  clOrdId: string;
+  algoClOrdId: string;
+  sCode: string;
+  sMsg: string;
+}
+
+export interface PostCancelAlgoOrderResponse {
+  algoId: string;
+  sCode: string;
+  sMsg: string;
+}
+
+export interface CreateSubAccountResponse {
+  subAcct: string;
+  label: string;
+  acctLv: string;
+  uid: string;
+  ts: string;
+}
+
+export interface DeleteSubAccountResponse {
+  subAcct: string;
+}
+
+interface GetSubAccountResponseDetail {
+  subAcct: string;
+  label: string;
+  acctLv: string;
+  ts: string;
+}
+
+export interface GetSubAccountInfoResponse {
+  totalPage: string;
+  page: string;
+  details: GetSubAccountResponseDetail[];
+}
+
+export interface CreateApiKeyResponse {
+  subAcct: string;
+  label: string;
+  apiKey: string;
+  secretKey: string;
+  passphrase: string;
+  perm: SubAccountPerm;
+  ip: string;
+  ts: string;
+}
+
+export interface ResetSubAccountApiKeyResponse {
+  subAcct: string;
+  apiKey: string;
+  label?: string;
+  perm?: SubAccountPerm;
+  ip?: string;
+  ts?: string;
+}
+
+export interface TradingAccountBalanceDetails {
+  availBal: string;
+  availEq: string;
+  cashBal: string;
+  ccy: string;
+  crossLiab: string;
+  disEq: string;
+  eq: string;
+  eqUsd: string;
+  fixedBal: string;
+  frozenBal: string;
+  interest: string;
+  isoEq: string;
+  isoLiab: string;
+  isoUpl: string;
+  liab: string;
+  maxLoan: string;
+  mgnRatio: string;
+  notionalLever: string;
+  ordFrozen: string;
+  twap: string;
+  uTime: string;
+  upl: string;
+  uplLiab: string;
+  stgyEq: string;
+  spotInUseAmt: string;
+  borrowFroz: string;
+  spotIsoBal: string;
+}
+
+export interface GetTradingAccountBalanceResponse {
+  adjEq: string;
+  borrowFroz: string;
+  details: TradingAccountBalanceDetails[];
+}
+
+export interface GetMainAccountBalanceResponse {
+  availBal: string;
+  bal: string;
+  ccy: string;
+  frozenBal: string;
+}
+
+export interface FundsTransferResponse {
+  transId: string;
+  ccy: string;
+  clientId: string;
+  from: AccountType;
+  amt: string;
+  to: string;
+}
+
+export interface GetMarketTickerResponse {
+  instType: string;
+  instId: string;
+  last: string;
+  lastSz: string;
+  askPx: string;
+  askSz: string;
+  bidPx: string;
+  bidSz: string;
+  open24h: string;
+  high24h: string;
+  low24h: string;
+  volCcy24h: string;
+  vol24h: string;
+  sodUtc0: string;
+  sodUtc8: string;
+  ts: string;
+}
+
+export interface GetMarketTickersResponse {
+  instType: string;
+  instId: string;
+  last: string;
+  lastSz: string;
+  askPx: string;
+  askSz: string;
+  bidPx: string;
+  bidSz: string;
+  open24h: string;
+  high24h: string;
+  low24h: string;
+  volCcy24h: string;
+  vol24h: string;
+  sodUtc0: string;
+  sodUtc8: string;
+  ts: string;
 }
