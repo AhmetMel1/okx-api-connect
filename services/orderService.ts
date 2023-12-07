@@ -5,21 +5,24 @@ import {
   GetPendingOrdersResponse,
   PostPlaceOrderResponse,
 } from "../types/responses";
+import {
+  GetOrderHistoryArchiveRequest,
+  GetPendingOrdersRequest,
+  PostPlaceOrderRequest,
+} from "../types/request";
 
-export class OrderService<K> {
+export class OkxOrderService {
   apiConfiguration: ApiConfiguration;
 
   constructor(apiConfiguration: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getOrderHistory = async (query?: K) => {
-    return new APICall<GetOrderHistoryArchiveResponse[], K>(
-      "GET",
-      "/trade/orders-history-archive",
-      this.apiConfiguration,
-      query
-    )
+  getOrderHistory = async (query: GetOrderHistoryArchiveRequest) => {
+    return new APICall<
+      GetOrderHistoryArchiveResponse[],
+      GetOrderHistoryArchiveRequest
+    >("GET", "/trade/orders-history-archive", this.apiConfiguration, query)
       .apiCall()
       .then(
         async (response: CustomResponse<GetOrderHistoryArchiveResponse[]>) => {
@@ -33,8 +36,8 @@ export class OrderService<K> {
       );
   };
 
-  getPendingOrders = async (query?: K) => {
-    return new APICall<GetPendingOrdersResponse[], K>(
+  getPendingOrders = async (query?: GetPendingOrdersRequest) => {
+    return new APICall<GetPendingOrdersResponse[], GetPendingOrdersRequest>(
       "GET",
       "/trade/orders-pending",
       this.apiConfiguration,
@@ -51,8 +54,8 @@ export class OrderService<K> {
       });
   };
 
-  postPlaceOrder = async (requestBody?: K) => {
-    return new APICall<PostPlaceOrderResponse[], K>(
+  postPlaceOrder = async (requestBody: PostPlaceOrderRequest) => {
+    return new APICall<PostPlaceOrderResponse[], PostPlaceOrderRequest>(
       "POST",
       "/trade/order",
       this.apiConfiguration,

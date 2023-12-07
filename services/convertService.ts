@@ -6,16 +6,22 @@ import {
   PostConvertEstimateQuoteResponse,
   PostConvertTradeResponse,
 } from "../types/responses";
+import {
+  GetConvertCurrencyPairRequest,
+  GetConvertHistoryRequest,
+  PostConvertTradeRequest,
+  PostEstimateQuoteRequest,
+} from "../types/request";
 
-export class ConvertService<K> {
+export class OkxConvertService {
   apiConfiguration: ApiConfiguration;
 
   constructor(apiConfiguration: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getConvertHistory = async (query?: K) => {
-    return new APICall<GetConvertHistoryResponse[], K>(
+  getConvertHistory = async (query?: GetConvertHistoryRequest) => {
+    return new APICall<GetConvertHistoryResponse[], GetConvertHistoryRequest>(
       "GET",
       "/asset/convert/history",
       this.apiConfiguration,
@@ -34,14 +40,12 @@ export class ConvertService<K> {
 
   getConvertCurrencyPair = async (
     apiConfiguration: ApiConfiguration,
-    query?: K
+    query: GetConvertCurrencyPairRequest
   ) => {
-    return new APICall<GetConvertCurrencyPairResponse[], K>(
-      "GET",
-      "/asset/convert/currency-pair",
-      apiConfiguration,
-      query
-    )
+    return new APICall<
+      GetConvertCurrencyPairResponse[],
+      GetConvertCurrencyPairRequest
+    >("GET", "/asset/convert/currency-pair", apiConfiguration, query)
       .apiCall()
       .then(
         async (response: CustomResponse<GetConvertCurrencyPairResponse[]>) => {
@@ -55,8 +59,11 @@ export class ConvertService<K> {
       );
   };
 
-  postConvertEstimateQuote = async (requestBody?: K) => {
-    return new APICall<PostConvertEstimateQuoteResponse[], K>(
+  postConvertEstimateQuote = async (requestBody: PostEstimateQuoteRequest) => {
+    return new APICall<
+      PostConvertEstimateQuoteResponse[],
+      PostEstimateQuoteRequest
+    >(
       "POST",
       "/asset/convert/estimate-quote",
       this.apiConfiguration,
@@ -78,8 +85,8 @@ export class ConvertService<K> {
       );
   };
 
-  postConvertTrade = async (requestBody?: K) => {
-    return new APICall<PostConvertTradeResponse[], K>(
+  postConvertTrade = async (requestBody: PostConvertTradeRequest) => {
+    return new APICall<PostConvertTradeResponse[], PostConvertTradeRequest>(
       "POST",
       "/asset/convert/trade",
       this.apiConfiguration,

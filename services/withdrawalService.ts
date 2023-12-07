@@ -4,16 +4,20 @@ import {
   GetWithdrawalHistoryResponse,
   PostWithdrawalResponse,
 } from "../types/responses";
+import {
+  GetWithdrawalHistoryRequest,
+  PostWithdrawalRequest,
+} from "../types/request";
 
-export class WithdrawalService<K> {
+export class OkxWithdrawalService {
   apiConfiguration: ApiConfiguration;
 
   constructor(apiConfiguration: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
-  postWithdrawal = async (requestBody?: K) => {
-    return new APICall<PostWithdrawalResponse[], K>(
+  postWithdrawal = async (requestBody: PostWithdrawalRequest) => {
+    return new APICall<PostWithdrawalResponse[], PostWithdrawalRequest>(
       "POST",
       "/asset/withdrawal",
       this.apiConfiguration,
@@ -31,13 +35,11 @@ export class WithdrawalService<K> {
       });
   };
 
-  getWithdrawalHistory = async (query?: K) => {
-    return new APICall<GetWithdrawalHistoryResponse[], K>(
-      "GET",
-      "/asset/withdrawal-history",
-      this.apiConfiguration,
-      query
-    )
+  getWithdrawalHistory = async (query?: GetWithdrawalHistoryRequest) => {
+    return new APICall<
+      GetWithdrawalHistoryResponse[],
+      GetWithdrawalHistoryRequest
+    >("GET", "/asset/withdrawal-history", this.apiConfiguration, query)
       .apiCall()
       .then(
         async (response: CustomResponse<GetWithdrawalHistoryResponse[]>) => {

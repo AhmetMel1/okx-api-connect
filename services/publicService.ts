@@ -5,16 +5,21 @@ import {
   GetInstrumentResponse,
   GetSystemStatusResponse,
 } from "../types/responses";
+import {
+  GetCurrenciesRequest,
+  GetInstrumentRequest,
+  GetSystemStatusRequest,
+} from "../types/request";
 
-export class PublicService<K> {
+export class OkxPublicService {
   apiConfiguration: ApiConfiguration;
 
   constructor(apiConfiguration: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getCurrencies = async (query?: K) => {
-    return new APICall<GetCurrenciesResponse[], K>(
+  getCurrencies = async (query?: GetCurrenciesRequest) => {
+    return new APICall<GetCurrenciesResponse[], GetCurrenciesRequest>(
       "GET",
       "/asset/currencies",
       this.apiConfiguration,
@@ -31,8 +36,8 @@ export class PublicService<K> {
       });
   };
 
-  getSystemStatus = async (query?: K) => {
-    return new APICall<GetSystemStatusResponse[], K>(
+  getSystemStatus = async (query?: GetSystemStatusRequest) => {
+    return new APICall<GetSystemStatusResponse[], GetSystemStatusRequest>(
       "GET",
       "/system/status",
       this.apiConfiguration,
@@ -49,8 +54,8 @@ export class PublicService<K> {
       });
   };
 
-  getInstruments = async (query?: K) => {
-    return new APICall<GetInstrumentResponse[], K>(
+  getInstruments = async (query: GetInstrumentRequest) => {
+    return new APICall<GetInstrumentResponse[], GetInstrumentRequest>(
       "GET",
       "/public/instruments",
       this.apiConfiguration,

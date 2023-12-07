@@ -4,16 +4,20 @@ import {
   GetDepositAddressResponse,
   GetDepositHistoryResponse,
 } from "../types/responses";
+import {
+  GetDepositAddressRequest,
+  GetDepositHistoryRequest,
+} from "../types/request";
 
-export class DepositService<K> {
+export class OkxDepositService {
   apiConfiguration: ApiConfiguration;
 
   constructor(apiConfiguration: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
-  getDepositAddress = async (query?: K) => {
-    return new APICall<GetDepositAddressResponse[], K>(
+  getDepositAddress = async (query: GetDepositAddressRequest) => {
+    return new APICall<GetDepositAddressResponse[], GetDepositAddressRequest>(
       "GET",
       "/asset/deposit-address",
       this.apiConfiguration,
@@ -30,8 +34,8 @@ export class DepositService<K> {
       });
   };
 
-  getDepositHistory = async (query?: K) => {
-    return new APICall<GetDepositHistoryResponse[], K>(
+  getDepositHistory = async (query?: GetDepositHistoryRequest) => {
+    return new APICall<GetDepositHistoryResponse[], GetDepositHistoryRequest>(
       "GET",
       "/asset/deposit-history",
       this.apiConfiguration,
