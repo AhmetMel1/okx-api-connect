@@ -6,11 +6,17 @@ import {
 } from "../types/responses";
 
 export class DepositService<K> {
-  getDepositAddress = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  apiConfiguration: ApiConfiguration;
+
+  constructor(apiConfiguration: ApiConfiguration) {
+    this.apiConfiguration = apiConfiguration;
+  }
+
+  getDepositAddress = async (query?: K) => {
     return new APICall<GetDepositAddressResponse[], K>(
       "GET",
       "/asset/deposit-address",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()
@@ -24,11 +30,11 @@ export class DepositService<K> {
       });
   };
 
-  getDepositHistory = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  getDepositHistory = async (query?: K) => {
     return new APICall<GetDepositHistoryResponse[], K>(
       "GET",
       "/asset/deposit-history",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()

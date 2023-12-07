@@ -6,14 +6,17 @@ import {
 } from "../types/responses";
 
 export class WithdrawalService<K> {
-  postWithdrawal = async (
-    apiConfiguration: ApiConfiguration,
-    requestBody?: K
-  ) => {
+  apiConfiguration: ApiConfiguration;
+
+  constructor(apiConfiguration: ApiConfiguration) {
+    this.apiConfiguration = apiConfiguration;
+  }
+
+  postWithdrawal = async (requestBody?: K) => {
     return new APICall<PostWithdrawalResponse[], K>(
       "POST",
       "/asset/withdrawal",
-      apiConfiguration,
+      this.apiConfiguration,
       undefined,
       requestBody
     )
@@ -28,14 +31,11 @@ export class WithdrawalService<K> {
       });
   };
 
-  getWithdrawalHistory = async (
-    apiConfiguration: ApiConfiguration,
-    query?: K
-  ) => {
+  getWithdrawalHistory = async (query?: K) => {
     return new APICall<GetWithdrawalHistoryResponse[], K>(
       "GET",
       "/asset/withdrawal-history",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()

@@ -7,11 +7,17 @@ import {
 } from "../types/responses";
 
 export class PublicService<K> {
-  getCurrencies = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  apiConfiguration: ApiConfiguration;
+
+  constructor(apiConfiguration: ApiConfiguration) {
+    this.apiConfiguration = apiConfiguration;
+  }
+
+  getCurrencies = async (query?: K) => {
     return new APICall<GetCurrenciesResponse[], K>(
       "GET",
       "/asset/currencies",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()
@@ -25,11 +31,11 @@ export class PublicService<K> {
       });
   };
 
-  getSystemStatus = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  getSystemStatus = async (query?: K) => {
     return new APICall<GetSystemStatusResponse[], K>(
       "GET",
       "/system/status",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()
@@ -43,11 +49,11 @@ export class PublicService<K> {
       });
   };
 
-  getInstruments = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  getInstruments = async (query?: K) => {
     return new APICall<GetInstrumentResponse[], K>(
       "GET",
       "/public/instruments",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()

@@ -8,11 +8,17 @@ import {
 } from "../types/responses";
 
 export class ConvertService<K> {
-  getConvertHistory = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  apiConfiguration: ApiConfiguration;
+
+  constructor(apiConfiguration: ApiConfiguration) {
+    this.apiConfiguration = apiConfiguration;
+  }
+
+  getConvertHistory = async (query?: K) => {
     return new APICall<GetConvertHistoryResponse[], K>(
       "GET",
       "/asset/convert/history",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()
@@ -49,14 +55,11 @@ export class ConvertService<K> {
       );
   };
 
-  postConvertEstimateQuote = async (
-    apiConfiguration: ApiConfiguration,
-    requestBody?: K
-  ) => {
+  postConvertEstimateQuote = async (requestBody?: K) => {
     return new APICall<PostConvertEstimateQuoteResponse[], K>(
       "POST",
       "/asset/convert/estimate-quote",
-      apiConfiguration,
+      this.apiConfiguration,
       undefined,
       requestBody
     )
@@ -75,14 +78,11 @@ export class ConvertService<K> {
       );
   };
 
-  postConvertTrade = async (
-    apiConfiguration: ApiConfiguration,
-    requestBody?: K
-  ) => {
+  postConvertTrade = async (requestBody?: K) => {
     return new APICall<PostConvertTradeResponse[], K>(
       "POST",
       "/asset/convert/trade",
-      apiConfiguration,
+      this.apiConfiguration,
       undefined,
       requestBody
     )

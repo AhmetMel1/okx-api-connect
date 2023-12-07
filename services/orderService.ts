@@ -7,11 +7,17 @@ import {
 } from "../types/responses";
 
 export class OrderService<K> {
-  getOrderHistory = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  apiConfiguration: ApiConfiguration;
+
+  constructor(apiConfiguration: ApiConfiguration) {
+    this.apiConfiguration = apiConfiguration;
+  }
+
+  getOrderHistory = async (query?: K) => {
     return new APICall<GetOrderHistoryArchiveResponse[], K>(
       "GET",
       "/trade/orders-history-archive",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()
@@ -27,11 +33,11 @@ export class OrderService<K> {
       );
   };
 
-  getPendingOrders = async (apiConfiguration: ApiConfiguration, query?: K) => {
+  getPendingOrders = async (query?: K) => {
     return new APICall<GetPendingOrdersResponse[], K>(
       "GET",
       "/trade/orders-pending",
-      apiConfiguration,
+      this.apiConfiguration,
       query
     )
       .apiCall()
@@ -45,14 +51,11 @@ export class OrderService<K> {
       });
   };
 
-  postPlaceOrder = async (
-    apiConfiguration: ApiConfiguration,
-    requestBody?: K
-  ) => {
+  postPlaceOrder = async (requestBody?: K) => {
     return new APICall<PostPlaceOrderResponse[], K>(
       "POST",
       "/trade/order",
-      apiConfiguration,
+      this.apiConfiguration,
       undefined,
       requestBody
     )
