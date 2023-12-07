@@ -2,11 +2,13 @@ import {
   AccountType,
   AlgoOrderType,
   InstrumentType,
-  OrderSide,
+  TradeSide,
   OrderType,
   SubAccountPerm,
   TradeMode,
   TriggerPriceType,
+  ConvertHistoryState,
+  DepositState,
 } from "./enums";
 
 export interface GetDepositHistoryResponse {
@@ -18,7 +20,7 @@ export interface GetDepositHistoryResponse {
   depId: string;
   from: string;
   fromWdId: string;
-  state: string;
+  state: DepositState;
   to: string;
   ts: string;
   txId: string;
@@ -41,7 +43,7 @@ export interface GetConvertHistoryResponse {
   baseCcy: string;
   quoteCcy: string;
   fillBaseSz: string;
-  state: string;
+  state: ConvertHistoryState;
   tradeId: string;
   fillQuoteSz: string;
   ts: string;
@@ -82,7 +84,7 @@ export interface PostConvertTradeResponse {
   quoteCcy: string;
   quoteId: string;
   side: string;
-  state: string;
+  state: ConvertHistoryState;
   tradeId: string;
   ts: string;
 }
@@ -111,6 +113,7 @@ export interface GetWithdrawalHistoryResponse {
   wdId: string;
   feeCCy: string;
   nonTradableAsset: string;
+  feeCcy: string;
 }
 
 export interface GetOrderHistoryArchiveResponse {
@@ -178,7 +181,7 @@ export interface GetOrderDetailsResponse {
   sz: string;
   pnl: string;
   ordType: OrderType;
-  side: OrderSide;
+  side: TradeSide;
   posSide: string;
   tdMode: TradeMode;
   accFillSz: string;

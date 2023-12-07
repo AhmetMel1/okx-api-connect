@@ -3,7 +3,7 @@ import {
   AlgoOrderType,
   InstrumentType,
   TradeMode,
-  OrderSide,
+  TradeSide,
   OrderType,
   TriggerPriceType,
   WithdrawalDestinationType,
@@ -12,6 +12,7 @@ import {
   PositionSide,
   SubAccountPerm,
   AccountType,
+  DepositState,
 } from "./enums";
 
 export interface GetConvertHistoryRequest {
@@ -58,7 +59,7 @@ export interface GetDepositHistoryRequest {
   fromWdId?: string;
   txId?: string;
   type?: string;
-  state?: string;
+  state?: DepositState;
   after?: string;
   before?: string;
   limit?: string;
@@ -103,7 +104,7 @@ export interface PostPlaceOrderRequest {
   ccy?: string;
   clOrdId?: string;
   tag?: string;
-  side: OrderSide;
+  side: TradeSide;
   posSide?: string;
   ordType: OrderType;
   sz: string;
@@ -194,7 +195,7 @@ export interface PostPlaceAlgoOrderRequest {
   instId: string;
   tdMode: TradeMode;
   ccy?: string;
-  side: OrderSide;
+  side: TradeSide;
   posSide?: PositionSide;
   ordType: AlgoOrderType;
   sz?: string;

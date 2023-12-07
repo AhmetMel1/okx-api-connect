@@ -24,7 +24,7 @@ export enum TradeMode {
   cash = "cash",
 }
 
-export enum OrderSide {
+export enum TradeSide {
   buy = "buy",
   sell = "sell",
 }
@@ -96,4 +96,19 @@ export enum SubAccountPerm {
 export enum AccountType {
   Funding = "6",
   Trading = "18",
+}
+
+export enum ConvertHistoryState {
+  fullyFilled = "fullyFilled",
+  rejected = "rejected",
+}
+
+export enum DepositState {
+  waiting = "0",
+  credited = "1",
+  successful = "2",
+  pending = "8",
+  blacklist = "11",
+  frozen = "12",
+  interception = "13",
 }
