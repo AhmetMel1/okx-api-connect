@@ -1,6 +1,6 @@
 {
   "name": "okx-api-connect",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "okx integration",
   "main": "index.js",
   "type": "commonjs",

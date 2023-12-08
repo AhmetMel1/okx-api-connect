@@ -1,10 +1,12 @@
 import { APICall } from "../utils/apiCall";
 import { ApiConfiguration, CustomResponse } from "../types/types";
 import {
+  GetIndexTickersRequest,
   GetMarketTickerRequest,
   GetMarketTickersRequest,
 } from "../types/request";
 import {
+  GetIndexTickerResponse,
   GetMarketTickerResponse,
   GetMarketTickersResponse,
 } from "../types/responses";
@@ -43,6 +45,24 @@ export class OkxMarketService {
     )
       .apiCall()
       .then(async (response: CustomResponse<GetMarketTickersResponse[]>) => {
+        return {
+          status: response.status,
+          code: response.code,
+          message: response.message,
+          data: response.data,
+        };
+      });
+  };
+
+  getIndexTicker = async (args: GetIndexTickersRequest) => {
+    return new APICall<GetIndexTickerResponse[], GetIndexTickersRequest>(
+      "GET",
+      "/market/index-tickers",
+      this.apiConfiguration,
+      args
+    )
+      .apiCall()
+      .then(async (response: CustomResponse<GetIndexTickerResponse[]>) => {
         return {
           status: response.status,
           code: response.code,

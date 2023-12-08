@@ -657,3 +657,14 @@ export interface GetMarketTickersResponse {
   sodUtc8: string;
   ts: string;
 }
+
+export interface GetIndexTickerResponse {
+  instId: string;
+  idxPx: string;
+  high24h: string;
+  sodUtc0: string;
+  open24h: string;
+  low24h: string;
+  sodUtc8: string;
+  ts: string;
+}

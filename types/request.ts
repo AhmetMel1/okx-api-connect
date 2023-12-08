@@ -288,3 +288,8 @@ export interface GetMarketTickersRequest {
   uly?: string;
   instFamily?: string;
 }
+
+export interface GetIndexTickersRequest {
+  quoteCcy?: string;
+  instId?: string;
+}
