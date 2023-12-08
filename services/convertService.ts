@@ -38,14 +38,11 @@ export class OkxConvertService {
       });
   };
 
-  getConvertCurrencyPair = async (
-    apiConfiguration: ApiConfiguration,
-    args: GetConvertCurrencyPairRequest
-  ) => {
+  getConvertCurrencyPair = async (args: GetConvertCurrencyPairRequest) => {
     return new APICall<
       GetConvertCurrencyPairResponse[],
       GetConvertCurrencyPairRequest
-    >("GET", "/asset/convert/currency-pair", apiConfiguration, args)
+    >("GET", "/asset/convert/currency-pair", this.apiConfiguration, args)
       .apiCall()
       .then(
         async (response: CustomResponse<GetConvertCurrencyPairResponse[]>) => {
