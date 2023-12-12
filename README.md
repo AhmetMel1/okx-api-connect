@@ -1,49 +1,55 @@
 # OKX API Connect
 
+[![npm version](https://img.shields.io/npm/v/okx-api-connect.svg)](https://www.npmjs.com/package/okx-api-connect)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+
 OKX API Connect is a TypeScript library for seamless integration with the OKX exchange API. This library streamlines the process of making public and private API calls to OKX, providing endpoints for retrieving market data, managing orders, and more.
 
-## Authors
-
-- **Ahmet Melih Temiz**
-- **Furkan İlhan**
-
 ## Installation
+
+Install the package via npm:
 
 ```bash
 npm install okx-api-connect
 ```
 
-```
-Usage
-Initializing API Configuration
-Before making API calls, you need to initialize the API configuration.
+## Usage
 
+### Initializing API Configuration
+
+Before making API calls, initialize the API configuration.
+
+```
 import { ApiConfiguration } from 'okx-api-connect';
 
 const apiConfig: ApiConfiguration = {
-apiKey: 'your-api-key',
-secretKey: 'your-secret-key',
-passphrase: 'your-passphrase',
+  apiKey: 'your-api-key',
+  secretKey: 'your-secret-key',
+  passphrase: 'your-passphrase',
 };
 
 ```
 
-Making Public API Calls
+### Making Public API Calls
+
 The OkxPublicService class provides methods for making public API calls.
 
+```
 import { OkxPublicService } from 'okx-api-connect';
 
 const publicService = new OkxPublicService(apiConfig);
 
 // Example: Get currencies
 publicService.getCurrencies().then((response) => {
-console.log(response);
+  console.log(response);
 });
-
 ```
-Making Order-related API Calls
+
+### Making Order-related API Calls
+
 The OkxOrderService class provides methods for making order-related API calls.
 
+```
 import { OkxOrderService } from 'okx-api-connect';
 
 const orderService = new OkxOrderService(apiConfig);
@@ -54,19 +60,23 @@ orderService.getOrderHistory({ instType: 'SPOT' }).then((response) => {
 });
 ```
 
-```
-Package Information
-Package Name: okx-api-connect
-Version: 1.0.9
-Scripts
-dev: Start the development server using ts-node-dev.
-build: Build the project using ts-node.
-build-ex: Build the project using tsc.
-Dependencies
-@types/node: ^20.10.1
-ts-node: ^10.9.1
-ts-node-dev: ^2.0.0
-typescript: ^5.3.2
+## Package Information
+
+-Package Name: okx-api-connect
+-Version: 1.0.9
+
+## Scripts
+
+-dev: Start the development server using ts-node-dev.
+-build: Build the project using ts-node.
+-build-ex: Build the project using tsc.
+
+## Dependencies
+
+-@types/node: ^20.10.1
+-ts-node: ^10.9.1
+-ts-node-dev: ^2.0.0
+-typescript: ^5.3.2
+
 License
 This project is licensed under the ISC License - see the LICENSE.md file for details.
-```
