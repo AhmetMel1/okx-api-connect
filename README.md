@@ -1,54 +1,72 @@
-```
-const apiConfiguration: ApiConfiguration = {
-  apiKey: apiKey,
-  passphrase: passphrase,
-  secretKey: secretKey,
-};
+# OKX API Connect
+
+OKX API Connect is a TypeScript library for seamless integration with the OKX exchange API. This library streamlines the process of making public and private API calls to OKX, providing endpoints for retrieving market data, managing orders, and more.
+
+## Authors
+
+- **Ahmet Melih Temiz**
+- **Furkan İlhan**
+
+## Installation
+
+```bash
+npm install okx-api-connect
 ```
 
 ```
-new OKX()
-  .getConvertHistory(apiConfiguration)
-  .then((response) => {
-    console.log("RESPONSE :", response);
-  })
-  .catch((err) => {
-    console.log(err, "err");
-  });
-```
+Usage
+Initializing API Configuration
+Before making API calls, you need to initialize the API configuration.
 
-```
-const query: any = {
-  fromCcy: "USDT",
-  toCcy: "ETH",
-};
+import { ApiConfiguration } from 'okx-api-connect';
 
-new OKX()
-  .getConvertCurrencyPair(apiConfiguration, query)
-  .then((response) => {
-    console.log("RESPONSE :", response);
-  })
-  .catch((err) => {
-    console.log(err, "err");
-  });
-```
-
-```
-const requestBody: any = {
-  baseCcy: string,
-  quoteCcy: string,
-  side: string,
-  rfqSz: string,
-  rfqSzCcy: string,
+const apiConfig: ApiConfiguration = {
+apiKey: 'your-api-key',
+secretKey: 'your-secret-key',
+passphrase: 'your-passphrase',
 };
 
-new OKX()
-  .postConvertEstimateQuote(apiConfiguration, requestBody)
-  .then((response) => {
-    console.log("Response: ", response);
-  })
-  .catch((err) => {
-    console.log(err, "err");
-  });
+```
 
+Making Public API Calls
+The OkxPublicService class provides methods for making public API calls.
+
+import { OkxPublicService } from 'okx-api-connect';
+
+const publicService = new OkxPublicService(apiConfig);
+
+// Example: Get currencies
+publicService.getCurrencies().then((response) => {
+console.log(response);
+});
+
+```
+Making Order-related API Calls
+The OkxOrderService class provides methods for making order-related API calls.
+
+import { OkxOrderService } from 'okx-api-connect';
+
+const orderService = new OkxOrderService(apiConfig);
+
+// Example: Get order history
+orderService.getOrderHistory({ instType: 'SPOT' }).then((response) => {
+  console.log(response);
+});
+```
+
+```
+Package Information
+Package Name: okx-api-connect
+Version: 1.0.9
+Scripts
+dev: Start the development server using ts-node-dev.
+build: Build the project using ts-node.
+build-ex: Build the project using tsc.
+Dependencies
+@types/node: ^20.10.1
+ts-node: ^10.9.1
+ts-node-dev: ^2.0.0
+typescript: ^5.3.2
+License
+This project is licensed under the ISC License - see the LICENSE.md file for details.
 ```
