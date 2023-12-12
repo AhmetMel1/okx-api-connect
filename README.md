@@ -59,25 +59,31 @@ orderService.getOrderHistory({ instType: "SPOT" }).then((response) => {
 });
 ```
 
-```
 ## Package Information
+
+```
 
 - Package Name: okx-api-connect
 - Version: 1.0.9
+```
 
 ## Scripts
 
+```
 - dev: Start the development server using ts-node-dev.
 - build: Build the project using ts-node.
 - build-ex: Build the project using tsc.
+```
 
 ## Dependencies
 
+```
 - @types/node: ^20.10.1
 - ts-node: ^10.9.1
 - ts-node-dev: ^2.0.0
 - typescript: ^5.3.2
-
-License
-This project is licensed under the ISC License - see the LICENSE.md file for details.
 ```
+
+## License
+
+This project is licensed under the ISC License - see the LICENSE.md file for details.
