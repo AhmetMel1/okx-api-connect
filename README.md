@@ -19,23 +19,22 @@ npm install okx-api-connect
 
 Before making API calls, initialize the API configuration.
 
-```
-import { ApiConfiguration } from 'okx-api-connect';
+```javascript
+import { ApiConfiguration } from "okx-api-connect";
 
 const apiConfig: ApiConfiguration = {
-  apiKey: 'your-api-key',
-  secretKey: 'your-secret-key',
-  passphrase: 'your-passphrase',
+  apiKey: "your-api-key",
+  secretKey: "your-secret-key",
+  passphrase: "your-passphrase",
 };
-
 ```
 
 ### Making Public API Calls
 
 The OkxPublicService class provides methods for making public API calls.
 
-```
-import { OkxPublicService } from 'okx-api-connect';
+```javascript
+import { OkxPublicService } from "okx-api-connect";
 
 const publicService = new OkxPublicService(apiConfig);
 
@@ -49,34 +48,36 @@ publicService.getCurrencies().then((response) => {
 
 The OkxOrderService class provides methods for making order-related API calls.
 
-```
-import { OkxOrderService } from 'okx-api-connect';
+```javascript
+import { OkxOrderService } from "okx-api-connect";
 
 const orderService = new OkxOrderService(apiConfig);
 
 // Example: Get order history
-orderService.getOrderHistory({ instType: 'SPOT' }).then((response) => {
+orderService.getOrderHistory({ instType: "SPOT" }).then((response) => {
   console.log(response);
 });
 ```
 
+```
 ## Package Information
 
--Package Name: okx-api-connect
--Version: 1.0.9
+- Package Name: okx-api-connect
+- Version: 1.0.9
 
 ## Scripts
 
--dev: Start the development server using ts-node-dev.
--build: Build the project using ts-node.
--build-ex: Build the project using tsc.
+- dev: Start the development server using ts-node-dev.
+- build: Build the project using ts-node.
+- build-ex: Build the project using tsc.
 
 ## Dependencies
 
--@types/node: ^20.10.1
--ts-node: ^10.9.1
--ts-node-dev: ^2.0.0
--typescript: ^5.3.2
+- @types/node: ^20.10.1
+- ts-node: ^10.9.1
+- ts-node-dev: ^2.0.0
+- typescript: ^5.3.2
 
 License
 This project is licensed under the ISC License - see the LICENSE.md file for details.
+```
