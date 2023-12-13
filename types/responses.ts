@@ -9,6 +9,9 @@ import {
   TriggerPriceType,
   ConvertHistoryState,
   DepositState,
+  AccountLevel,
+  MarginMode,
+  PositionSide,
 } from "./enums";
 
 export interface GetDepositHistoryResponse {
@@ -130,7 +133,7 @@ export interface GetOrderHistoryArchiveResponse {
   sz: string;
   ordType: string;
   side: string;
-  posSide: string;
+  posSide: PositionSide;
   tdMode: string;
   accFillSz: string;
   fillPx: string;
@@ -182,7 +185,7 @@ export interface GetOrderDetailsResponse {
   pnl: string;
   ordType: OrderType;
   side: TradeSide;
-  posSide: string;
+  posSide: PositionSide;
   tdMode: TradeMode;
   accFillSz: string;
   fillPx: string;
@@ -236,7 +239,7 @@ export interface GetPendingOrdersResponse {
   ordId: string;
   ordType: string;
   pnl: string;
-  posSide: string;
+  posSide: PositionSide;
   px: string;
   pxUsd: string;
   pxVol: string;
@@ -381,7 +384,7 @@ export interface GetAlgoOrderHistoryResponse {
   ordIdList: string[];
   ordPx: string;
   ordType: AlgoOrderType;
-  posSide: string;
+  posSide: PositionSide;
   pxLimit: string;
   pxSpread: string;
   pxVar: string;
@@ -420,7 +423,7 @@ export interface GetAlgoOrderDetailsResponse {
   closeFraction: string;
   ordType: AlgoOrderType;
   side: string;
-  posSide: string;
+  posSide: PositionSide;
   tdMode: TradeMode;
   tgtCcy: string;
   state: string;
@@ -479,7 +482,7 @@ export interface GetPendingAlgoOrdersResponse {
   ordId: string;
   ordIdList: string[];
   ordPx: string;
-  posSide: string;
+  posSide: PositionSide;
   pxLimit: string;
   pxSpread: string;
   pxVar: string;
@@ -667,4 +670,152 @@ export interface GetIndexTickerResponse {
   low24h: string;
   sodUtc8: string;
   ts: string;
+}
+
+export interface SetAccountLevelResponse {
+  acctLv: AccountLevel;
+}
+
+export interface GetAccountConfigResponse {
+  acctLv: string;
+  autoLoan: boolean;
+  ctIsoMode: string;
+  greeksType: string;
+  level: string;
+  levelTmp: string;
+  mgnIsoMode: string;
+  posMode: string;
+  spotOffsetType: string;
+  uid: string;
+  label: string;
+  roleType: string;
+  traderInsts: string[];
+  spotRoleType: string;
+  spotTraderInsts: string[];
+  opAuth: string;
+  kycLv: string;
+  ip: string;
+  perm: string;
+  mainUid: string;
+}
+
+export interface GetLeverageResponse {
+  instId: string;
+  mgnMode: MarginMode;
+  posSide: PositionSide;
+  lever: string;
+}
+
+export interface GetLeverageEstimatedInfoResponse {
+  estAvailQuoteTrans: string;
+  estAvailTrans: string;
+  estLiqPx: string;
+  estMaxAmt: string;
+  estMgn: string;
+  estQuoteMaxAmt: string;
+  estQuoteMgn: string;
+  existOrd: boolean;
+  maxLever: string;
+  minLever: string;
+}
+
+export interface SetLeverageResponse {
+  instId: string;
+  mgnMode: MarginMode;
+  posSide: PositionSide;
+  lever: string;
+}
+
+interface CloseOrderAlgo {
+  algoId: string;
+  slTriggerPx: string;
+  slTriggerPxType: string;
+  tpTriggerPx: string;
+  tpTriggerPxType: string;
+  closeFraction: string;
+}
+
+export interface GetPositionsResponse {
+  adl: string;
+  availPos: string;
+  avgPx: string;
+  cTime: string;
+  ccy: string;
+  deltaBS: string;
+  deltaPA: string;
+  gammaBS: string;
+  gammaPA: string;
+  imr: string;
+  instId: string;
+  instType: string;
+  interest: string;
+  idxPx: string;
+  usdPx: string;
+  bePx: string;
+  last: string;
+  lever: string;
+  liab: string;
+  liabCcy: string;
+  liqPx: string;
+  markPx: string;
+  margin: string;
+  mgnMode: string;
+  mgnRatio: string;
+  mmr: string;
+  notionalUsd: string;
+  optVal: string;
+  pTime: string;
+  pos: string;
+  baseBorrowed: string;
+  baseInterest: string;
+  quoteBorrowed: string;
+  quoteInterest: string;
+  posCcy: string;
+  posId: string;
+  posSide: string;
+  spotInUseAmt: string;
+  spotInUseCcy: string;
+  bizRefId: string;
+  bizRefType: string;
+  thetaBS: string;
+  thetaPA: string;
+  tradeId: string;
+  uTime: string;
+  upl: string;
+  uplLastPx: string;
+  uplRatio: string;
+  uplRatioLastPx: string;
+  vegaBS: string;
+  vegaPA: string;
+  realizedPnl: string;
+  pnl: string;
+  fee: string;
+  fundingFee: string;
+  liqPenalty: string;
+  closeOrderAlgo: CloseOrderAlgo[];
+}
+
+export interface GetPositionHistoryResponse {
+  cTime: string;
+  ccy: string;
+  closeAvgPx: string;
+  closeTotalPos: string;
+  instId: string;
+  instType: string;
+  lever: string;
+  mgnMode: string;
+  openAvgPx: string;
+  openMaxPos: string;
+  realizedPnl: string;
+  fee: string;
+  fundingFee: string;
+  liqPenalty: string;
+  pnl: string;
+  pnlRatio: string;
+  posId: string;
+  direction: string;
+  triggerPx: string;
+  type: string;
+  uTime: string;
+  uly: string;
 }

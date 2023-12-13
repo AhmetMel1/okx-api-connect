@@ -83,6 +83,7 @@ export enum QuickMarginType {
 }
 
 export enum PositionSide {
+  net = "net",
   long = "long",
   short = "short",
 }
@@ -111,4 +112,24 @@ export enum DepositState {
   blacklist = "11",
   frozen = "12",
   interception = "13",
+}
+
+export enum AccountLevel {
+  simple = "1",
+  single_currency_margin = "2",
+  multi_currency_margin = "3",
+  portfolio_margin = "4",
+}
+
+export enum MarginMode {
+  cross = "cross",
+  isolated = "isolated",
+}
+
+export enum ClosePositionType {
+  partialy = "1",
+  all = "1",
+  liquidation = "3",
+  partial_liquidation = "4",
+  adl = "5",
 }

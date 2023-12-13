@@ -20,7 +20,7 @@ npm install okx-api-connect
 Before making API calls, initialize the API configuration.
 
 ```javascript
-import { ApiConfiguration } from "okx-api-connect";
+import { ApiConfiguration } from "okx-api-connect/types/types";
 
 const apiConfig: ApiConfiguration = {
   apiKey: "your-api-key",
@@ -34,7 +34,7 @@ const apiConfig: ApiConfiguration = {
 The OkxPublicService class provides methods for making public API calls.
 
 ```javascript
-import { OkxPublicService } from "okx-api-connect";
+import { OkxPublicService } from "okx-api-connect/services/publicService";
 
 const publicService = new OkxPublicService(apiConfig);
 
@@ -49,7 +49,7 @@ publicService.getCurrencies().then((response) => {
 The OkxOrderService class provides methods for making order-related API calls.
 
 ```javascript
-import { OkxOrderService } from "okx-api-connect";
+import { OkxOrderService } from "okx-api-connect/services/orderService";
 
 const orderService = new OkxOrderService(apiConfig);
 
@@ -62,9 +62,8 @@ orderService.getOrderHistory({ instType: "SPOT" }).then((response) => {
 ## Package Information
 
 ```
-
 - Package Name: okx-api-connect
-- Version: 1.0.9
+- Version: 1.1.1
 ```
 
 ## Scripts

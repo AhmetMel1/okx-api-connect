@@ -60,7 +60,7 @@ export class APICall<T, K> {
       const result: OkxResponse<T> = await response.json();
       const timestamp = new Date().getTime();
 
-      if (!response.ok) {
+      if (result.code !== "0") {
         result.code = "200-" + result.code;
       }
 

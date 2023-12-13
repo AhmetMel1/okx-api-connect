@@ -41,7 +41,7 @@ export class OkxAlgoService {
     return new APICall<
       GetAlgoOrderDetailsResponse[],
       GetAlgoOrderDetailsRequest
-    >("GET", "/trade/orders-algo-history", this.apiConfiguration, args)
+    >("GET", "/trade/order-algo", this.apiConfiguration, args)
       .apiCall()
       .then(async (response: CustomResponse<GetAlgoOrderDetailsResponse[]>) => {
         return {

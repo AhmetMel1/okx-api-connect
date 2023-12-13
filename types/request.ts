@@ -13,6 +13,9 @@ import {
   SubAccountPerm,
   AccountType,
   DepositState,
+  AccountLevel,
+  MarginMode,
+  ClosePositionType,
 } from "./enums";
 
 export interface GetConvertHistoryRequest {
@@ -105,7 +108,7 @@ export interface PostPlaceOrderRequest {
   clOrdId?: string;
   tag?: string;
   side: TradeSide;
-  posSide?: string;
+  posSide?: PositionSide;
   ordType: OrderType;
   sz: string;
   px?: string;
@@ -212,8 +215,8 @@ export interface PostPlaceAlgoOrderRequest {
   slTriggerPx?: string;
   slOrdPx?: string;
   triggerPxType?: TriggerPriceType;
-  triggerPx: string;
-  orderPx: string;
+  triggerPx?: string;
+  orderPx?: string;
   pxVar?: string;
   pxSpread?: string;
   szLimit?: string;
@@ -292,4 +295,47 @@ export interface GetMarketTickersRequest {
 export interface GetIndexTickersRequest {
   quoteCcy?: string;
   instId?: string;
+}
+
+export interface SetAccountLevelRequest {
+  acctLv: AccountLevel;
+}
+
+export interface GetLeverageRequest {
+  instId: string;
+  mgnMode: MarginMode;
+}
+
+export interface GetLeverageEstimatedInfoRequest {
+  instType: InstrumentType;
+  mgnMode: MarginMode;
+  lever: string;
+  instId?: string;
+  ccy: string;
+  posSide?: PositionSide;
+}
+
+export interface SetLeverageRequest {
+  instId?: string;
+  ccy?: string;
+  lever: string;
+  mgnMode: MarginMode;
+  posSide?: PositionSide;
+}
+
+export interface GetPositionsRequest {
+  instType?: InstrumentType;
+  instId?: string;
+  posId?: string;
+}
+
+export interface GetPositionHistoryRequest {
+  instType?: InstrumentType;
+  instId?: string;
+  mgnMode?: MarginMode;
+  type?: ClosePositionType;
+  posId?: string;
+  after?: string;
+  before?: string;
+  limit?: string;
 }
