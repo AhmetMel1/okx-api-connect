@@ -63,7 +63,7 @@ orderService.getOrderHistory({ instType: "SPOT" }).then((response) => {
 
 ```
 - Package Name: okx-api-connect
-- Version: 1.1.1
+- Version: 1.1.2
 ```
 
 ## Scripts

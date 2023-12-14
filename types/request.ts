@@ -203,7 +203,7 @@ export interface PostPlaceAlgoOrderRequest {
   ordType: AlgoOrderType;
   sz?: string;
   tag?: string;
-  reduceOnly?: boolean;
+  reduceOnly?: string;
   tgtCcy?: string;
   algoClOrdId?: string;
   closeFraction?: string;
