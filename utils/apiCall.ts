@@ -51,7 +51,7 @@ export class APICall<T, K> {
       body: this.method !== "GET" ? body : undefined,
     };
 
-    const okxBasePath = `https://okex.com${basePath}`;
+    const okxBasePath = `https://okx.com${basePath}`;
 
     try {
       const response = await fetch(okxBasePath, fetchConfig);
