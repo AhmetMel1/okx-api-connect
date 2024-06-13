@@ -12,11 +12,17 @@ import {
 } from "../types/request";
 
 export class OkxPublicService {
+  apiConfiguration?: ApiConfiguration;
+
+  constructor(apiConfiguration?: ApiConfiguration) {
+    this.apiConfiguration = apiConfiguration;
+  }
+
   getCurrencies = async (args?: GetCurrenciesRequest) => {
     return new APICall<GetCurrenciesResponse[], GetCurrenciesRequest>(
       "GET",
       "/asset/currencies",
-      undefined,
+      this.apiConfiguration,
       args
     )
       .apiCall()

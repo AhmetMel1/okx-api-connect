@@ -1,6 +1,6 @@
 {
   "name": "okx-api-connect",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Simplify integration of OKX exchange's API into Node.js apps. Whether building a trading bot, portfolio manager, or data analysis tool, this npm package offers an efficient way to interact with OKX's API endpoints.",
   "main": "index.js",
   "type": "commonjs",
