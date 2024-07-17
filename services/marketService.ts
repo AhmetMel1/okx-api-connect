@@ -12,9 +12,9 @@ import {
 } from "../types/responses";
 
 export class OkxMarketService {
-  apiConfiguration: ApiConfiguration;
+  apiConfiguration?: ApiConfiguration;
 
-  constructor(apiConfiguration: ApiConfiguration) {
+  constructor(apiConfiguration?: ApiConfiguration) {
     this.apiConfiguration = apiConfiguration;
   }
 
@@ -22,7 +22,7 @@ export class OkxMarketService {
     return new APICall<GetMarketTickerResponse[], GetMarketTickerRequest>(
       "GET",
       "/market/ticker",
-      this.apiConfiguration,
+      undefined,
       args
     )
       .apiCall()
@@ -40,7 +40,7 @@ export class OkxMarketService {
     return new APICall<GetMarketTickersResponse[], GetMarketTickersRequest>(
       "GET",
       "/market/tickers",
-      this.apiConfiguration,
+      undefined,
       args
     )
       .apiCall()
@@ -58,7 +58,7 @@ export class OkxMarketService {
     return new APICall<GetIndexTickerResponse[], GetIndexTickersRequest>(
       "GET",
       "/market/index-tickers",
-      this.apiConfiguration,
+      undefined,
       args
     )
       .apiCall()
